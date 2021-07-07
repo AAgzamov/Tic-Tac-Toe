@@ -18,7 +18,7 @@ def intro():
 def logo():
 	print(f'''                
 	        {YELLOW}__      __     {CYAN}________                
-                {YELLOW}\ \    / /    {CYAN}/ _____  \ 
+                {YELLOW}\ \    / /    {CYAN}/ _____  \\ 
                  {YELLOW}\ \  / /     {CYAN}| |    | |
                   {YELLOW}\ \/ /      {CYAN}| |    | |
                   {YELLOW}/ /\ \      {CYAN}| |    | |
