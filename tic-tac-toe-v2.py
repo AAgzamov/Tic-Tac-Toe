@@ -1,41 +1,42 @@
 import os
 
+# CREATING FUNCTIONS.
 
 # Information.
 def intro():
-	
-	print(f'{GREEN}Welcome! {WHITE}This is a {GREEN}"Tic Tac Toe" {WHITE}console game created by {RED}AAgzamov{WHITE}.')	
+
+	print(f'{GREEN}Welcome! {WHITE}This is a {GREEN}"Tic Tac Toe" {WHITE}console game created by {RED}AAgzamov{WHITE}.')
 	print(f'\n{GREEN}[Info]:')
 	print(f'\t{GREEN}"Tic Tac Toe" {WHITE}is a game for two players, {YELLOW}X {WHITE}and {CYAN}O{WHITE}, who take turns marking the spaces in a 3×3 grid.')
 	print(f'\t{WHITE}The player who succeeds in placing three of their marks in a diagonal, horizontal, or vertical row{WHITE} is the {GREEN}winner{WHITE}.')
-	
+
 	print(f'\n{WHITE}Contributions are welcome!')
 	print(f'{WHITE}GitHub: https://github.com/AAgzamov/Tic-Tac-Toe.\n')
-	
+
 	print(f'\nPress any key to continue.')
 
 # Logo.
 def logo():
-	print(f'''                
-	        {YELLOW}__      __     {CYAN}________                
-                {YELLOW}\ \    / /    {CYAN}/ _____  \\ 
+	print(f'''
+	        {YELLOW}__      __     {CYAN}________
+                {YELLOW}\ \    / /    {CYAN}/ _____  \\
                  {YELLOW}\ \  / /     {CYAN}| |    | |
                   {YELLOW}\ \/ /      {CYAN}| |    | |
                   {YELLOW}/ /\ \      {CYAN}| |    | |
                  {YELLOW}/ /  \ \     {CYAN}| |____| |
                 {YELLOW}/_/    \_\    {CYAN}\________/
-	
-	''')	
+
+	''')
 
 # Menu.
 def menu():
 	print(f'''             {WHITE}Menu:
-	         
+
              [1] {GREEN}New game{WHITE}.
              {WHITE}[2] Information{WHITE}.
-             [3] {RED}Quit{WHITE}.	
-	
-	
+             [3] {RED}Quit{WHITE}.
+
+
 	''')
 
 # Informs that it is turn of 'X'.
@@ -46,13 +47,13 @@ def goes_x():
 
 # Inform that it is turn of 'O'
 def goes_o():
-    
+
 	print(f'{WHITE}Now it is turn for \'{CYAN}O{WHITE}\' to mark the space.')
 	print('Choose where you want to mark the space.')
 
 # This function prints out the game space.
 def game():
-	
+
 #	if a != ' X ' and  b != ' X ' and c != ' X ' and d != ' X ' and e != ' X ' and f != ' X ' and g != ' X ' and h != ' X ' and i != ' X ' and a != ' O ' and b != ' O ' and c != ' O ' and d != ' O ' and e != ' O ' and f != ' O ' and g != ' O ' and h != ' O ' and i != ' O ':
 	print('\n')
 	print(f'\t{WHITE}{a}', f'{WHITE}{b}', f'{WHITE}{c}', sep = '   ', end = '\n\n')
@@ -129,7 +130,7 @@ def put_o(o):
 	if o == 'a':
 		if (a[0] != ' X ' and a[0] != ' O '):
 			a.pop()
-			a.append(' O ')          
+			a.append(' O ')
 	elif o == 'b':
 		if (b[0] != ' X ' and b[0] != ' O '):
 			b.pop()
@@ -232,7 +233,7 @@ def check(winner):
 	elif ((a[0]==' X ' or a[0]==' O ') and (b[0]==' X ' or b[0]==' O ') and (c[0]==' X ' or c[0]==' O ') and (d[0]==' X ' or d[0]==' O ') and (e[0]==' X ' or e[0]==' O ') and (f[0]==' X ' or f[0]==' O ') and (g[0]==' X ' or g[0]==' O ') and (h[0]==' X ' or h[0]==' O ') and (i[0]==' X ' or i[0]==' O ')):
 		winner = 'd'
 		return winner
-    
+
 	return 'n'
 
 # Clean screen (for Unix-based Operating Systems).
@@ -244,7 +245,7 @@ WHITE = '\033[1;37;40m'
 RED = '\033[1;31;40m'
 GREEN = '\033[1;32;40m'
 YELLOW = '\033[1;33;40m'
-CYAN = '\033[1;36;40m' 
+CYAN = '\033[1;36;40m'
 
 # Formats.
 W_UNDERLINE = '\033[2;37;40m'
@@ -257,6 +258,7 @@ clear()
 
 while 1: # Main game loop.
 
+# DECLARING VARIABLES.
 
 	# Rows and columns.
 	a = [' a ']
@@ -274,25 +276,35 @@ while 1: # Main game loop.
 	marked_values = list()
 	winner = 'n' # No winner yet.
 	again = 'n' # Variable for asking if players want to play again or otherwise.
-	
-	logo()
-	menu()
-	
-	player_input = input(f'{WHITE}Enter (1/2/3): ')
-	
-	if player_input == '1':
-		clear()
-		pass
-	elif player_input == '2':
-		clear()
-		intro()
-		input()
-		clear()
-		continue
-	elif player_input == '3':
-		clear()
-		exit()
-	
+	error = False # "error" variable to monitor player input.
+
+	while True: # Menu loop.
+		logo()
+		menu()
+		if error:
+			print(f'{RED}[Error]: {WHITE}Please enter 1, 2, or 3.')
+		player_input = input(f'{WHITE}Enter (1/2/3): ')
+
+		if player_input == '1':
+			error = False
+			clear()
+			break
+		elif player_input == '2':
+			error = False
+			clear()
+			intro()
+			input()
+			clear()
+			continue
+		elif player_input == '3':
+			clear()
+			exit()
+		else:
+			error = True
+			clear()
+			continue
+
+
 	print(f'{WHITE}\'{YELLOW}X{WHITE}\' goes firts.')
 
 	while 1: # Start game loop.
@@ -302,8 +314,16 @@ while 1: # Main game loop.
 		if turn_x == True:
 			goes_x() # Turn of 'X'.
 
-			x = str(input()) # Taking an input for 'X'.
-			x = x.lower() # Lowering case of the input value of 'X'.
+			while True:
+				x = str(input()) # Taking an input for 'X'.
+				x = x.lower() # Lowering case of the input value of 'X'.
+
+				if x!='a' and x!='b' and x!='c' and x!='d' and x!='e' and x!='f' and x!='g' and x!='h' and x!='i':
+					print(f'\n{RED}[Error]: {WHITE}Please mark one of the available spaces.\n')
+					goes_x()
+					continue
+				else:
+					break
 
         	# Checking for the space availability.
 			for index in range(len(marked_values)):
@@ -347,15 +367,24 @@ while 1: # Main game loop.
 
 			turn_x = False
 			clear()
-        
-		elif turn_x == False:
-    
-			goes_o() # Turn of 'O'.
-    
-			o = str(input()) # Taking an input for 'O'.
-			o = o.lower() # Lowering case of the input value of 'O'.
 
-        	# Checking for the space availability.
+		elif turn_x == False:
+
+			goes_o() # Turn of 'O'.
+
+			while True:
+
+				o = str(input()) # Taking an input for 'O'.
+				o = o.lower() # Lowering case of the input value of 'O'.
+
+				if o!='a' and o!='b' and o!='c' and o!='d' and o!='e' and o!='f' and o!='g' and o!='h' and o!='i':
+					print(f'\n{RED}[Error]: {WHITE}Please mark one of the available spaces.\n')
+					goes_o()
+					continue
+				else:
+					break
+
+			# Checking for the space availability.
 			for index in range(len(marked_values)):
 				if o == marked_values[index]:
 					print(f'\n{RED}[Error]: {WHITE}The space is already marked! Choose another space.\n')
@@ -374,7 +403,7 @@ while 1: # Main game loop.
 
         	# Marking the space with 'O'.
 			put_o(o)
-        
+
 			if 'y' == check(winner):
 				game()
 				print(f'{WHITE}\'{CYAN}O{WHITE}\' is a {GREEN}winner{WHITE}!\n')
