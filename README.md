@@ -7,6 +7,6 @@
 
 ## Instruction
 1. Copy the repository to your local machine: ```git clone https://github.com/AAgzamov/Tic-Tac-Toe.git```
-2. Run 
+2. Run _"tic-tac-toe-v2.py"_: ```python3 tic-tac-toe-v2.py```
 # Creators
 [AAgzamov](https://github.com/AAgzamov)
