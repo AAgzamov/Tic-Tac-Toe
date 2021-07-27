@@ -5,5 +5,8 @@
 1. Unix-based OS (e.g. Linux, MacOS).
 2. python3 or higher.
 
+## Instruction
+1. Copy the repository to your local machine: ```git clone https://github.com/AAgzamov/Tic-Tac-Toe.git```
+2. Run 
 # Creators
 [AAgzamov](https://github.com/AAgzamov)
